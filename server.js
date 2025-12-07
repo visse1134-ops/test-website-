@@ -6,11 +6,11 @@ const path = require("path");
 const app = express();
 
 // Replace with your actual Discord webhook URL
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1447081074177081485/bG6xw52GeUlYZ2BTinCZGG0hLAftI7g6n3Uva73q7zhPjUvUnGbgTJvD26_GBoseh3-K";
+const WEBHOOK_URL = "https://discord.com/api/webhooks/XXXXXXXX/XXXXXXXX";
 
-// Homepage route
+// Serve index.html at root
 app.get("/", (req, res) => {
-  res.send("✅ Server is running! Visit /api/systeminfo to trigger the webhook.");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // System info + webhook route
