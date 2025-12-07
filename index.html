@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Green Text</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #0b0f0c;
+      color: #9ff59f;
+    }
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      font-size: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #2a5f2a;
+      border-radius: 8px;
+      background: #0f1a12;
+      color: #caffca;
+      outline: none;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      border: 0;
+      border-radius: 8px;
+      background: #2ecc71;
+      color: #06210d;
+      cursor: pointer;
+    }
+    button:hover { background: #29b866; }
+    .output {
+      font-weight: 900;
+      color: #00ff6a;
+      font-size: clamp(2rem, 8vw, 10rem);
+      line-height: 1.05;
+      word-wrap: break-word;
+      text-shadow: 0 0 10px rgba(0, 255, 106, 0.25);
+    }
+    .hint { opacity: 0.7; font-size: 0.9rem; margin-top: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <input id="textInput" type="text" placeholder="Type your text..." />
+    <button id="showBtn">Show</button>
+    <button id="clearBtn" aria-label="Clear">Clear</button>
+  </div>
+
+  <div id="output" class="output">Your big green text appears here</div>
+  <div class="hint">Tip: Press Enter to update. Your last text is saved locally.</div>
+
+  <script>
+    const input = document.getElementById('textInput');
+    const output = document.getElementById('output');
+    const showBtn = document.getElementById('showBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // Restore last value
+    const saved = localStorage.getItem('bigGreenText');
+    if (saved) {
+      input.value = saved;
+      output.textContent = saved;
+    }
+
+    function update() {
+      const value = input.value.trim();
+      output.textContent = value || 'Your big green text appears here';
+      localStorage.setItem('bigGreenText', value);
+    }
+
+    showBtn.addEventListener('click', update);
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      update();
+      localStorage.removeItem('bigGreenText');
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') update();
+    });
+  </script>
+</body>
+</html>
