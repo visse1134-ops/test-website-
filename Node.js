@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 const os = require("os");
 const app = express();
 
-const WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_URL"; // paste your webhook here
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1447081074177081485/bG6xw52GeUlYZ2BTinCZGG0hLAftI7g6n3Uva73q7zhPjUvUnGbgTJvD26_GBoseh3-K"; // paste your webhook here
 
 app.get("/api/systeminfo", async (req, res) => {
   const info = {
